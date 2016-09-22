@@ -12,7 +12,6 @@ namespace DataStructureGroup
         {
 
             Console.Write("Klynt");
-            Console.Write("Yardley");
         }
     }
 }
