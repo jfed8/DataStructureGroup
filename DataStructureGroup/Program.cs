@@ -112,24 +112,29 @@ namespace DataStructureGroup
 
         static void Main(string[] args)
         {
-            int option1 = menu(1); //Displays first menu 
-            
-            int option2 = -1;
+            bool exit = false;
 
-            switch (option1) //Displays second menu depending on user's selection from menu 1
+            while(!exit)
             {
-                case 1:
-                    option2 = menuTwo("Stack");
-                    break;
-                case 2:
-                    option2 = menuTwo("Queue");
-                    break;
-                case 3:
-                    option2 = menuTwo("Dictionary");
-                    break;
-                case 4:
-                    
-                    break;
+                int option1 = menu(1); //Displays first menu 
+            
+                int option2 = -1;
+
+                switch (option1) //Displays second menu depending on user's selection from menu 1
+                {
+                    case 1:
+                        option2 = menuTwo("Stack");
+                        break;
+                    case 2:
+                        option2 = menuTwo("Queue");
+                        break;
+                    case 3:
+                        option2 = menuTwo("Dictionary");
+                        break;
+                    case 4:
+                        exit = true;
+                        break;
+                }
             }
             Console.ReadKey();
 
