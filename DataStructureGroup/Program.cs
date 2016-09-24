@@ -20,7 +20,7 @@ namespace DataStructureGroup
                 Console.Write("1. Stack\n");
                 Console.Write("2. Queue\n");
                 Console.Write("3. Dictionary\n");
-                Console.Write("4.  Exit\n");
+                Console.Write("4. Exit\n");
                 Console.Write("->");
             }
 
@@ -109,29 +109,38 @@ namespace DataStructureGroup
                 return option;
         }
 
+        
+
+
 
         static void Main(string[] args)
         {
-            bool exit = false;
+            //Initiate the DataStructures that the program uses
+            Stack<string> myStack = new Stack<string>();
+            Queue<string> myQueue = new Queue<string>();
+            Dictionary<string, int> myDictionary = new Dictionary<string, int>();
 
+            
+            
+            bool exit = false;
             while(!exit)
             {
                 int option1 = menu(1); //Displays first menu 
             
                 int option2 = -1;
 
-                switch (option1) //Displays second menu depending on user's selection from menu 1
+                switch (option1) //Displays Menu Two based of the user's input from first menu;
                 {
-                    case 1:
+                    case 1: //Enters into case that is specific to the Stack
                         option2 = menuTwo("Stack");
                         break;
-                    case 2:
+                    case 2: // //Enters into case that is specific to the Queue
                         option2 = menuTwo("Queue");
                         break;
-                    case 3:
+                    case 3: // //Enters into case that is specific to the Dictionary
                         option2 = menuTwo("Dictionary");
                         break;
-                    case 4:
+                    case 4: // Exit
                         exit = true;
                         break;
                 }
