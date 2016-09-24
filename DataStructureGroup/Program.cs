@@ -16,7 +16,7 @@ namespace DataStructureGroup
             if (type == 1)
             {
                 
-                Console.Write("\nPlease choose an option: \n");
+                Console.Write("Please choose an option: \n");
                 Console.Write("1. Stack\n");
                 Console.Write("2. Queue\n");
                 Console.Write("3. Dictionary\n");
@@ -41,7 +41,7 @@ namespace DataStructureGroup
                 
             }
 
-            if (option > 0 && option < 7)
+            if (option > 0 && option < 5)
                 return option;
             else
                 return -1;
@@ -51,11 +51,24 @@ namespace DataStructureGroup
 
         static void Main(string[] args)
         {
-            Console.Write("Feddock");
-            Console.Write("Jess");
-            Console.Write("Group 2-3");
-
             int option = menu(1);
+
+            switch (option)
+            {
+                case 1:
+                    Console.WriteLine("1");
+                    break;
+                case 2:
+                    Console.WriteLine("2");
+                    break;
+                case 3:
+                    Console.WriteLine("3");
+                    break;
+                case 4:
+                    Console.WriteLine("4");
+                    break;
+            }
+            Console.ReadKey();
 
         }
     }
