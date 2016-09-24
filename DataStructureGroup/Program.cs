@@ -49,9 +49,10 @@ namespace DataStructureGroup
 
         }
 
-        /* I had to leave this before I could add comments.  I am pretty sure it works but I am going to test it more. 
-         * Essentially it brings up the Second menu and uses "Queue", Dictionary", etc. from menu one.
-         * I will add more documentary on it later.
+        /* Function: menuTwo()
+         * Description: Displays the second menu so user can select specific action with the chosen Data Structure
+         * Parameters: String StructureType - Chosen by user from main menu
+         * Returns: int option
          */
         public static int menuTwo(string StructureType)
         {
@@ -95,10 +96,11 @@ namespace DataStructureGroup
 
         static void Main(string[] args)
         {
-            int option1 = menu(1);
+            int option1 = menu(1); //Displays first menu 
+            
             int option2 = -1;
 
-            switch (option1)
+            switch (option1) //Displays second menu depending on user's selection from menu 1
             {
                 case 1:
                     option2 = menuTwo("Stack");
