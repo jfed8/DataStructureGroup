@@ -31,21 +31,32 @@ namespace DataStructureGroup
                 try
                 {
                     option = int.Parse(sInput);
-                    validOption = true;
+
+                    if (option > 0 && option < 5) //Tests if int is within the menu bounds
+                    {
+                        validOption = true;
+                    }       
+                    else
+                    {
+                        Console.Write("Invalid input. Try again\n");
+                        Console.Write("->");
+                        sInput = Console.ReadLine();
+                    }
+
+                    
+
                 }
                 catch
                 {
-                    Console.Write("Invalid input. Try again");
+                    Console.Write("Invalid input. Try again\n");
                     Console.Write("->");
                     sInput = Console.ReadLine();
                 }
                 
             }
-
-            if (option > 0 && option < 5)
-                return option;
-            else
-                return -1;
+            
+            return option;
+            
 
         }
 
@@ -76,21 +87,26 @@ namespace DataStructureGroup
                 try
                 {
                     option = int.Parse(sInput);
-                    validOption = true;
+                    if (option > 0 && option < 8)
+                    {
+                        validOption = true;
+                    }
+                    else
+                    {
+                        Console.Write("Invalid input. Try again\n");
+                        Console.Write("->");
+                        sInput = Console.ReadLine();
+                    }
                 }
                 catch
                 {
-                    Console.Write("Invalid input. Try again");
+                    Console.Write("Invalid input. Try again\n");
                     Console.Write("->");
                     sInput = Console.ReadLine();
                 }
 
-            }
-
-            if (option > 0 && option < 8)
+            } 
                 return option;
-            else
-                return -1;
         }
 
 
