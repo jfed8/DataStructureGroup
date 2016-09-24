@@ -11,18 +11,16 @@ namespace DataStructureGroup
         public static int menu(int type)
         {
             bool validOption = false;
-
+            int option = -1;
 
             if (type == 1)
             {
-                int option = -1;
+                
                 Console.Write("\nPlease choose an option: \n");
-                Console.Write("1. Add a car to the station\n");
-                Console.Write("2. Remove a car from the station\n");
-                Console.Write("3. Add a car from the station to a storage facility\n");
-                Console.Write("4. Remove a car from a storage facility (bring it to the station)\n");
-                Console.Write("5. Display the currently accessible cars in all locations\n");
-                Console.Write("6. Quit\n");
+                Console.Write("1. Stack\n");
+                Console.Write("2. Queue\n");
+                Console.Write("3. Dictionary\n");
+                Console.Write("4.  Exit\n");
                 Console.Write("->");
             }
 
