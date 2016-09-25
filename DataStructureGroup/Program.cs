@@ -16,7 +16,6 @@ namespace DataStructureGroup
 
             if (type == 1)
             {
-                
                 Console.Write("Please choose an option: \n");
                 Console.Write("1. Stack\n");
                 Console.Write("2. Queue\n");
@@ -43,9 +42,6 @@ namespace DataStructureGroup
                         Console.Write("->");
                         sInput = Console.ReadLine();
                     }
-
-                    
-
                 }
                 catch
                 {
