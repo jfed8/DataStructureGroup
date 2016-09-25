@@ -11,11 +11,10 @@ namespace DataStructureGroup
         public static int menu(int type)
         {
             bool validOption = false;
-
+            int option = -1;
 
             if (type == 1)
             {
-                int option = -1;
                 Console.Write("\nPlease choose an option: \n");
                 Console.Write("1. Add a car to the station\n");
                 Console.Write("2. Remove a car from the station\n");
@@ -42,6 +41,8 @@ namespace DataStructureGroup
                 }
                 
             }
+
+
 
             if (option > 0 && option < 7)
                 return option;
