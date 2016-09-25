@@ -288,7 +288,6 @@ namespace DataStructureGroup
                         break;
                 }
             }
-            Console.ReadKey();
 
         }
     }
