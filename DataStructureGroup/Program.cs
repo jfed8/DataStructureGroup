@@ -131,14 +131,71 @@ namespace DataStructureGroup
 
                 switch (option1) //Displays Menu Two based of the user's input from first menu;
                 {
-                    case 1: //Enters into case that is specific to the Stack
+                    case 1: 
                         option2 = menuTwo("Stack");
+                        
+                        switch (option2) //Enters into cases specific to the Stack
+                        {
+                            case 1: //add one time
+                                break;
+                            case 2: //add huge list
+                                break;
+                            case 3: //display
+                                break;
+                            case 4: //delete from
+                                break;
+                            case 5: //clear
+                                break;
+                            case 6: //search
+                                break;
+                            case 7: //return to main menu
+                                //Due to while loop, automatically returns to main menu
+                                break;
+                        }
                         break;
-                    case 2: // //Enters into case that is specific to the Queue
+                    case 2:
                         option2 = menuTwo("Queue");
+                        
+                        switch (option2) //Enters into cases specific to the Queue
+                        {
+                            case 1: //add one time
+                                break;
+                            case 2: //add huge list
+                                break;
+                            case 3: //display
+                                break;
+                            case 4: //delete from
+                                break;
+                            case 5: //clear
+                                break;
+                            case 6: //search
+                                break;
+                            case 7: //return to main menu
+                                //Due to while loop, automatically returns to main menu
+                                break;
+                        }
                         break;
-                    case 3: // //Enters into case that is specific to the Dictionary
+                    case 3: 
                         option2 = menuTwo("Dictionary");
+
+                        switch (option2)  //Enters into cases specific to the Dictionary
+                        {
+                            case 1: //add one time
+                                break;
+                            case 2: //add huge list
+                                break;
+                            case 3: //display
+                                break;
+                            case 4: //delete from
+                                break;
+                            case 5: //clear
+                                break;
+                            case 6: //search
+                                break;
+                            case 7: //return to main menu
+                                //Due to while loop, automatically returns to main menu
+                                break;
+                        }
                         break;
                     case 4: // Exit
                         exit = true;
