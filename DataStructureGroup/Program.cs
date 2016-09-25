@@ -139,6 +139,7 @@ namespace DataStructureGroup
                         string input;
                         string search;
                         bool found = false;
+                        Stack<string> second = new Stack<string>();
 
                         switch (option2) //Enters into cases specific to the Stack
                         {
@@ -146,7 +147,7 @@ namespace DataStructureGroup
                                 Console.Write("Please enter string for the Stack: ");
                                 input = Console.ReadLine();
                                 myStack.Push(input);
-                                Console.WriteLine(input + " entered.\n");
+                                Console.WriteLine(input + " entered.");
                                 break;
                             case 2: //add huge list
                                 myStack.Clear();
@@ -155,7 +156,7 @@ namespace DataStructureGroup
                                     string number = i.ToString();
                                     myStack.Push("New Entry " + number);
                                 }
-                                Console.WriteLine("Huge List Added\n");
+                                Console.WriteLine("Huge List Added");
                                 break;
                             case 3: //display
                                 // Handle when the stack is empty!
@@ -171,14 +172,38 @@ namespace DataStructureGroup
                                 {
                                     Console.WriteLine(entry);
                                 }
-                                Console.Write("\n");
                                 break;
                             case 4: //delete from
+                                Console.Write("Enter string to delete: ");
+                                search = Console.ReadLine();
+                                foreach (string entry in myStack)
+                                {
+                                    if (entry.Equals(search))
+                                    {
+                                        found = true;
+                                        while (myStack.Peek() != search)
+                                        {
+                                            second.Push(myStack.Pop());
+                                        }
+                                        myStack.Pop();
+                                        while (second.Count() > 0)
+                                        {
+                                            myStack.Push(second.Pop());
+                                        }
 
+                                        Console.WriteLine("String deleted. But please use another structure if you want to delete next time...");
+                                        break;
+                                    }
+                                }
+                                if (found)
+                                {
+                                    break;
+                                }
+                                Console.WriteLine("String not found.");
                                 break;
                             case 5: //clear
                                 myStack.Clear();
-                                Console.WriteLine("Stack cleared.\n");
+                                Console.WriteLine("Stack cleared.");
                                 break;
                             case 6: //search
                                 Console.Write("Enter string to search for: ");
@@ -189,7 +214,6 @@ namespace DataStructureGroup
                                 {
                                     if (entry.Equals(search))
                                     {
-                                        Thread.Sleep(1300);
                                         found = true;
                                         sw.Stop();
                                         Console.WriteLine("String found.");
@@ -197,7 +221,7 @@ namespace DataStructureGroup
                                         string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
                                             ts.Hours, ts.Minutes, ts.Seconds,
                                             ts.Milliseconds / 10);
-                                        Console.WriteLine("Elapsed time: " + elapsedTime + "\n");
+                                        Console.WriteLine("Elapsed time: " + elapsedTime);
                                         sw.Reset();
                                         break;
                                     }
@@ -208,10 +232,10 @@ namespace DataStructureGroup
                                 }
                                 sw.Stop();
                                 sw.Reset();
-                                Console.WriteLine("String not found.\n");
+                                Console.WriteLine("String not found.");
                                 break;
                             case 7: //return to main menu
-                                exit = true;
+                                option1 = menu(1);
                                 break;
                         }
                         break;
