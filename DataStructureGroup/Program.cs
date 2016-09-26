@@ -370,7 +370,7 @@ namespace DataStructureGroup
                             case 6: //search
                                 break;
                             case 7: //return to main menu
-                                //Due to while loop, automatically returns to main menu
+                                option1 = menu(1);
                                 break;
                         }
                         break;
