@@ -241,19 +241,105 @@ namespace DataStructureGroup
                         switch (option2) //Enters into cases specific to the Queue
                         {
                             case 1: //add one time
+                                Console.Write("\nEnter the item you would like to add to the Stack: ");
+                                string singleItem = Console.ReadLine();
+                                myQueue.Enqueue(singleItem);
                                 break;
                             case 2: //add huge list
+                                myQueue.Clear();//clear queue 
+                                for (int i = 1; i < 2001; i++)
+                                {
+                                    myQueue.Enqueue("New Entry " + i);
+                                }
+                                Console.WriteLine("\nHuge list added.");
                                 break;
                             case 3: //display
+                                if (myQueue.Count != 0)//display contents of queue if it's not empty
+                                {
+                                    Console.WriteLine("\nYour queue:");
+                                    foreach (string item in myQueue)
+                                    {
+                                        Console.WriteLine(item);
+                                    }
+                                }
+                                else
+                                {
+                                    Console.WriteLine("\nThe queue is empty. Please fill to display results.");
+                                }
                                 break;
                             case 4: //delete from
+                                string sDeleteItem;
+                                bool queueFound = false;
+                                Queue<string> tempQueue = new Queue<string>();
+                                Console.Write("\nEnter the item you would like to delete: ");
+                                sDeleteItem = Console.ReadLine();
+                                while (myQueue.Count != 0)
+                                {
+                                    //load up tempQueue with the contents of myQueue, other than the item to delete
+                                    if (myQueue.Peek() != sDeleteItem)
+                                    {
+                                        tempQueue.Enqueue(myQueue.Dequeue());
+                                    }
+                                    else
+                                    {
+                                        myQueue.Dequeue();
+                                        queueFound = true;
+                                    }
+                                }
+                                if (queueFound)
+                                {
+                                    myQueue = tempQueue;//set myQueue back equal to the tempQueue, deleting the item
+                                }
+                                else
+                                {
+                                    Console.WriteLine("This item is not in the queue.");
+                                }
                                 break;
                             case 5: //clear
+                                if (myQueue.Count > 0)
+                                {
+                                    myQueue.Clear();
+                                    Console.WriteLine("\nQueue has been cleared.");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("\nQueue is already empty.");
+                                }
                                 break;
                             case 6: //search
+                                bool queueFound2 = false;
+                                string sFindItem;
+                                System.Diagnostics.Stopwatch sw2 = new System.Diagnostics.Stopwatch();
+                                IEnumerator<string> MyQueueEnumerator = myQueue.GetEnumerator();
+                                Console.Write("\nEnter the item you would like to find: ");
+                                sw2.Start();
+                                sFindItem = Console.ReadLine();
+                                while (!queueFound2 && MyQueueEnumerator.MoveNext())
+                                {
+                                    if (sFindItem == MyQueueEnumerator.Current)
+                                    {
+                                        queueFound2 = true;
+                                    }
+                                }
+                                sw2.Stop();                                
+                                if (queueFound2)
+                                {
+                                    Console.WriteLine(sFindItem + " found.");
+                                }
+                                else
+                                {
+                                    Console.WriteLine(sFindItem + " was not found.");
+                                }
+                                TimeSpan ts = sw2.Elapsed;
+                                //set proper format for displaying the time
+                                string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+                                    ts.Hours, ts.Minutes, ts.Seconds,
+                                    ts.Milliseconds / 10);
+                                Console.WriteLine("Elapsed time: " + elapsedTime);
+                                sw2.Reset();
                                 break;
                             case 7: //return to main menu
-                                //Due to while loop, automatically returns to main menu
+                                option1 = menu(1);
                                 break;
                         }
                         break;
