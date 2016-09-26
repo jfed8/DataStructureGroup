@@ -1,4 +1,8 @@
-﻿using System;
+﻿//Authors: Group 2-3 Klynt Yardley, Matthew Christensen, Jaden Feddock and Jess Clapier
+//Description: This program demonstrates the use of a Stack, Queue, and Dictionary (Map)
+//Date Created: 9/26/16
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +13,12 @@ namespace DataStructureGroup
 {
     class Program
     {
+
+        /* Function: menu()
+         * Description: Displays the first menu so user can select a data structure
+         * Parameters: int type
+         * Returns: int option
+         */
         public static int menu(int type)
         {
             bool validOption = false;
@@ -358,6 +368,9 @@ namespace DataStructureGroup
                         switch (option2)  //Enters into cases specific to the Dictionary
                         {
                             case 1: //add one time
+                                Console.WriteLine("Enter the item you would like to add to the dictionary: ");
+                                string singleItem = Console.ReadLine();
+                                myDictionary.Add();        
                                 break;
                             case 2: //add huge list
                                 break;
