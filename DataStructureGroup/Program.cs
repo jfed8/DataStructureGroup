@@ -213,6 +213,8 @@ namespace DataStructureGroup
                                         found = true;
                                         sw.Stop();
                                         Console.WriteLine("String found.");
+
+                                        // Display Time
                                         TimeSpan ts = sw.Elapsed;
                                         string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
                                             ts.Hours, ts.Minutes, ts.Seconds,
@@ -227,6 +229,13 @@ namespace DataStructureGroup
                                     break;
                                 }
                                 sw.Stop();
+                                TimeSpan ts2 = sw.Elapsed;
+
+                                // Display Time
+                                string elapsedTime2 = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+                                    ts2.Hours, ts2.Minutes, ts2.Seconds,
+                                    ts2.Milliseconds / 10);
+                                Console.WriteLine("Elapsed time: " + elapsedTime2);
                                 sw.Reset();
                                 Console.WriteLine("String not found.");
                                 break;
