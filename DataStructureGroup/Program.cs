@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace DataStructureGroup
@@ -15,7 +16,6 @@ namespace DataStructureGroup
 
             if (type == 1)
             {
-
                 Console.Write("Please choose an option: \n");
                 Console.Write("1. Stack\n");
                 Console.Write("2. Queue\n");
@@ -34,17 +34,14 @@ namespace DataStructureGroup
 
                     if (option > 0 && option < 5) //Tests if int is within the menu bounds
                     {
-                        validOption = true;
-                    }
+                    validOption = true;
+                }
                     else
                     {
                         Console.Write("Invalid input. Try again\n");
                         Console.Write("->");
                         sInput = Console.ReadLine();
                     }
-
-
-
                 }
                 catch
                 {
@@ -52,11 +49,11 @@ namespace DataStructureGroup
                     Console.Write("->");
                     sInput = Console.ReadLine();
                 }
-
+                
             }
 
-            return option;
-
+                return option;
+            
 
         }
 
@@ -67,7 +64,7 @@ namespace DataStructureGroup
          */
         public static int menuTwo(string StructureType)
         {
-            Console.Write("Please choose an option: \n");
+            Console.Write("\nPlease choose an option: \n");
             Console.Write("1. Add one time to " + StructureType + "\n");
             Console.Write("2. Add Huge List of Items to " + StructureType + "\n");
             Console.Write("3. Display " + StructureType + "\n");
@@ -91,7 +88,7 @@ namespace DataStructureGroup
                     {
                         validOption = true;
                     }
-                    else
+            else
                     {
                         Console.Write("Invalid input. Try again\n");
                         Console.Write("->");
@@ -105,8 +102,8 @@ namespace DataStructureGroup
                     sInput = Console.ReadLine();
                 }
 
-            }
-            return option;
+        }
+                return option;
         }
 
 
@@ -119,22 +116,129 @@ namespace DataStructureGroup
             Stack<string> myStack = new Stack<string>();
             Queue<string> myQueue = new Queue<string>();
             Dictionary<string, int> myDictionary = new Dictionary<string, int>();
-
-
-
+            System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
+            
+            
             bool exit = false;
-            while (!exit)
-            {
-                int option1 = menu(1); //Displays first menu 
 
+            int option1 = menu(1);
+
+            while(!exit)
+            { //Displays first menu 
+            
                 int option2 = -1;
 
                 switch (option1) //Displays Menu Two based of the user's input from first menu;
                 {
-                    case 1:
+                    case 1: 
                         option2 = menuTwo("Stack");
+                        string input;
+                        string search;
+                        bool found = false;
+                        Stack<string> second = new Stack<string>();
 
                         switch (option2) //Enters into cases specific to the Stack
+                        {
+                            case 1: //add one time
+                                Console.Write("Please enter string for the Stack: ");
+                                input = Console.ReadLine();
+                                myStack.Push(input);
+                                Console.WriteLine(input + " entered.");
+                                break;
+                            case 2: //add huge list
+                                myStack.Clear();
+                                for (int i = 1; i <= 2000; i++)
+                                {
+                                    string number = i.ToString();
+                                    myStack.Push("New Entry " + number);
+                                }
+                                Console.WriteLine("Huge List Added");
+                                break;
+                            case 3: //display
+                                // Handle when the stack is empty!
+                                if (myStack.Count == 0)
+                                {
+                                    Console.WriteLine("The Stack is empty.\n");
+                                    break;
+                                }
+
+                                // Display the elements of the stack one at a time.
+                                Console.WriteLine("\nStack:");
+                                foreach (string entry in myStack)
+                                {
+                                    Console.WriteLine(entry);
+                                }
+                                break;
+                            case 4: //delete from
+                                Console.Write("Enter string to delete: ");
+                                search = Console.ReadLine();
+                                foreach (string entry in myStack)
+                                {
+                                    if (entry.Equals(search))
+                                    {
+                                        found = true;
+                                        while (myStack.Peek() != search)
+                                        {
+                                            second.Push(myStack.Pop());
+                                        }
+                                        myStack.Pop();
+                                        while (second.Count() > 0)
+                                        {
+                                            myStack.Push(second.Pop());
+                                        }
+
+                                        Console.WriteLine("String deleted. But please use another structure if you want to delete next time...");
+                                        break;
+                                    }
+                                }
+                                if (found)
+                                {
+                                    break;
+                                }
+                                Console.WriteLine("String not found.");
+                                break;
+                            case 5: //clear
+                                myStack.Clear();
+                                Console.WriteLine("Stack cleared.");
+                                break;
+                            case 6: //search
+                                Console.Write("Enter string to search for: ");
+                                sw.Start();
+                                search = Console.ReadLine();
+                                Console.Write("\n");
+                                foreach (string entry in myStack)
+                                {
+                                    if (entry.Equals(search))
+                                    {
+                                        found = true;
+                                        sw.Stop();
+                                        Console.WriteLine("String found.");
+                                        TimeSpan ts = sw.Elapsed;
+                                        string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+                                            ts.Hours, ts.Minutes, ts.Seconds,
+                                            ts.Milliseconds / 10);
+                                        Console.WriteLine("Elapsed time: " + elapsedTime);
+                                        sw.Reset();
+                                        break;
+                                    }
+                                }
+                                if (found)
+                                {
+                                    break;
+                                }
+                                sw.Stop();
+                                sw.Reset();
+                                Console.WriteLine("String not found.");
+                                break;
+                            case 7: //return to main menu
+                                option1 = menu(1);
+                                break;
+                        }
+                        break;
+                    case 2:
+                        option2 = menuTwo("Queue");
+                        
+                        switch (option2) //Enters into cases specific to the Queue
                         {
                             case 1: //add one time
                                 break;
@@ -153,89 +257,7 @@ namespace DataStructureGroup
                                 break;
                         }
                         break;
-                    case 2:
-                        option2 = -1;
-                        while (option2 != 7)
-                        {
-                            Console.WriteLine("");//for a neater, easier to read appearance
-                            option2 = menuTwo("Queue");
-                            switch (option2) //Enters into cases specific to the Queue
-                            {
-                                case 1: //add one time
-                                    Console.Write("\nEnter the item you would like to add to the Stack: ");
-                                    string singleItem = Console.ReadLine();
-                                    myQueue.Enqueue(singleItem);
-                                    break;
-                                case 2: //add huge list
-                                    myQueue.Clear();
-                                    for (int i = 1; i < 2001; i++)
-                                    {
-                                        myQueue.Enqueue("New Entry " + i);
-                                    }
-                                    break;
-                                case 3: //display
-                                    if (myQueue.Count != 0)
-                                    {
-                                        foreach (string item in myQueue)
-                                        {
-                                            Console.WriteLine(item);
-                                        }
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("\nThe queue is empty. Please fill to display results.");
-                                    }
-                                    break;
-                                case 4: //delete from
-                                    string sDeleteItem;
-                                    Console.Write("\nEnter the item you would like to delete: ");
-                                    sDeleteItem = Console.ReadLine();
-                                    if (myQueue.Peek() == sDeleteItem)
-                                    {
-                                        myQueue.Dequeue();
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("This item is not at the front of the queue.");
-                                    }
-                                    break;
-                                case 5: //clear
-                                    myQueue.Clear();
-                                    break;
-                                case 6: //search
-                                    bool found = false;
-                                    string sFindItem;
-                                    System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
-                                    IEnumerator<string> MyQueueEnumerator = myQueue.GetEnumerator();
-                                    Console.Write("\nEnter the item you would like to find: ");
-                                    sFindItem = Console.ReadLine();
-                                    sw.Start();
-                                    while (!found && MyQueueEnumerator.MoveNext())
-                                    {
-                                        if (sFindItem == MyQueueEnumerator.Current)
-                                        {
-                                            found = true;
-                                        }
-                                    }
-                                    sw.Stop();
-                                    var timeElapsed = sw.ElapsedMilliseconds;
-                                    if (found)
-                                    {
-                                        Console.WriteLine(sFindItem + " was found in the queue!");
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine(sFindItem + " was not found.");
-                                    }
-                                    Console.WriteLine("Execution time: " + timeElapsed);
-                                    break;
-                                case 7: //return to main menu
-                                    //Due to while loop, automatically returns to main menu
-                                    break;
-                            }
-                        }
-                        break;
-                    case 3:
+                    case 3: 
                         option2 = menuTwo("Dictionary");
 
                         switch (option2)  //Enters into cases specific to the Dictionary
@@ -262,7 +284,6 @@ namespace DataStructureGroup
                         break;
                 }
             }
-            Console.ReadKey();
 
         }
     }
