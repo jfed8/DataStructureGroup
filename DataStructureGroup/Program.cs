@@ -75,7 +75,7 @@ namespace DataStructureGroup
         public static int menuTwo(string StructureType)
         {
             Console.Write("\nPlease choose an option: \n");
-            Console.Write("1. Add one time to " + StructureType + "\n");
+            Console.Write("1. Add one item to " + StructureType + "\n");
             Console.Write("2. Add Huge List of Items to " + StructureType + "\n");
             Console.Write("3. Display " + StructureType + "\n");
             Console.Write("4. Delete from " + StructureType + "\n");
@@ -398,7 +398,6 @@ namespace DataStructureGroup
                                 break;
                             case 4: //delete from
                                 string sDeleteItem;
-                                bool dictFound = false;
                                 Console.Write("\nEnter the item you would like to delete: ");
                                 sDeleteItem = Console.ReadLine();
                                 
@@ -406,7 +405,7 @@ namespace DataStructureGroup
                                 if (myDictionary.ContainsKey(sDeleteItem))
                                 {
                                     myDictionary.Remove(sDeleteItem);
-                                    dictFound = true;
+                                    Console.WriteLine("\n" + sDeleteItem + " successfully deleted.");
                                 }
 
                                 else
@@ -415,10 +414,38 @@ namespace DataStructureGroup
                                 }
                                 break;
                             case 5: //clear
+                                myDictionary.Clear();
+                                Console.WriteLine("\nDictionary cleared.");
                                 break;
                             case 6: //search
+                                string sFindItem;
+                                System.Diagnostics.Stopwatch sw2 = new System.Diagnostics.Stopwatch(); //create stopwatch
+                                Console.Write("\nEnter the item you would like to find: ");
+                                sw2.Start();
+                                sFindItem = Console.ReadLine();
+
+                                if (myDictionary.ContainsKey(sFindItem))
+                                {
+                                    sw2.Stop();
+                                    Console.WriteLine(sFindItem + " found.");
+                                }
+
+                                else
+                                {
+                                    sw2.Stop(); 
+                                    Console.WriteLine(sFindItem + " was not found.");
+                                }
+
+                                TimeSpan ts = sw2.Elapsed;
+                                //set proper format for displaying the time
+                                string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+                                    ts.Hours, ts.Minutes, ts.Seconds,
+                                    ts.Milliseconds / 10);
+                                Console.WriteLine("Elapsed time: " + elapsedTime);
+                                sw2.Reset();
                                 break;
                             case 7: //return to main menu
+                                Console.WriteLine();
                                 option1 = menu(1);
                                 break;
                         }
