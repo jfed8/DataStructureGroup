@@ -368,15 +368,51 @@ namespace DataStructureGroup
                         switch (option2)  //Enters into cases specific to the Dictionary
                         {
                             case 1: //add one time
-                                Console.WriteLine("Enter the item you would like to add to the dictionary: ");
+                                Console.WriteLine("\nEnter the item you would like to add to the dictionary: ");
                                 string singleItem = Console.ReadLine();
-                                myDictionary.Add();        
+                                Console.WriteLine("\nEnter the the value for " + singleItem + ": ");
+                                int iValue = Convert.ToInt32(Console.ReadLine());
+                                myDictionary.Add(singleItem, iValue);        
                                 break;
                             case 2: //add huge list
-                                break;
+                                myDictionary.Clear();//clear dictionary 
+                                for (int i = 1; i < 2001; i++)
+                                {
+                                    myDictionary.Add(("New Entry " + Convert.ToString(i)) , i);
+                                }
+                                Console.WriteLine("\nHuge list added.");
+                                    break;
                             case 3: //display
+                                    if (myDictionary.Count != 0)//display contents of dictionary if it's not empty
+                                    {
+                                        Console.WriteLine("\nYour dictionary:");
+                                        foreach (KeyValuePair<string, int> entry in myDictionary)
+                                        {
+                                            Console.WriteLine(entry.Key + "\t" + entry.Value);
+                                        } 
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("\nThe dictionary is empty. Please fill to display results.");
+                                    }   
                                 break;
                             case 4: //delete from
+                                string sDeleteItem;
+                                bool dictFound = false;
+                                Console.Write("\nEnter the item you would like to delete: ");
+                                sDeleteItem = Console.ReadLine();
+                                
+                                //search dictionary to see if the item exists and delete item
+                                if (myDictionary.ContainsKey(sDeleteItem))
+                                {
+                                    myDictionary.Remove(sDeleteItem);
+                                    dictFound = true;
+                                }
+
+                                else
+                                {
+                                    Console.WriteLine("\nThe item you entered does not exist in the dictionary.");
+                                }
                                 break;
                             case 5: //clear
                                 break;
