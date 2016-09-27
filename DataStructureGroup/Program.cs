@@ -44,8 +44,8 @@ namespace DataStructureGroup
 
                     if (option > 0 && option < 5) //Tests if int is within the menu bounds
                     {
-                    validOption = true;
-                }
+                        validOption = true;
+                    }
                     else
                     {
                         Console.Write("Invalid input. Try again\n");
@@ -59,11 +59,11 @@ namespace DataStructureGroup
                     Console.Write("->");
                     sInput = Console.ReadLine();
                 }
-                
+
             }
 
-                return option;
-            
+            return option;
+
 
         }
 
@@ -75,7 +75,7 @@ namespace DataStructureGroup
         public static int menuTwo(string StructureType)
         {
             Console.Write("\nPlease choose an option: \n");
-            Console.Write("1. Add one time to " + StructureType + "\n");
+            Console.Write("1. Add one item to " + StructureType + "\n");
             Console.Write("2. Add Huge List of Items to " + StructureType + "\n");
             Console.Write("3. Display " + StructureType + "\n");
             Console.Write("4. Delete from " + StructureType + "\n");
@@ -98,7 +98,7 @@ namespace DataStructureGroup
                     {
                         validOption = true;
                     }
-            else
+                    else
                     {
                         Console.Write("Invalid input. Try again\n");
                         Console.Write("->");
@@ -112,8 +112,8 @@ namespace DataStructureGroup
                     sInput = Console.ReadLine();
                 }
 
-        }
-                return option;
+            }
+            return option;
         }
 
 
@@ -127,20 +127,20 @@ namespace DataStructureGroup
             Queue<string> myQueue = new Queue<string>();
             Dictionary<string, int> myDictionary = new Dictionary<string, int>();
             System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
-            
-            
+
+
             bool exit = false;
 
             int option1 = menu(1);
 
-            while(!exit)
+            while (!exit)
             { //Displays first menu 
-            
+
                 int option2 = -1;
 
                 switch (option1) //Displays Menu Two based of the user's input from first menu;
                 {
-                    case 1: 
+                    case 1:
                         option2 = menuTwo("Stack");
                         string input;
                         string search;
@@ -256,7 +256,7 @@ namespace DataStructureGroup
                         break;
                     case 2:
                         option2 = menuTwo("Queue");
-                        
+
                         switch (option2) //Enters into cases specific to the Queue
                         {
                             case 1: //add one time
@@ -340,7 +340,7 @@ namespace DataStructureGroup
                                         queueFound2 = true;
                                     }
                                 }
-                                sw2.Stop();                                
+                                sw2.Stop();
                                 if (queueFound2)
                                 {
                                     Console.WriteLine(sFindItem + " found.");
@@ -362,27 +362,90 @@ namespace DataStructureGroup
                                 break;
                         }
                         break;
-                    case 3: 
+                    case 3:
                         option2 = menuTwo("Dictionary");
 
                         switch (option2)  //Enters into cases specific to the Dictionary
                         {
                             case 1: //add one time
-                                Console.WriteLine("Enter the item you would like to add to the dictionary: ");
+                                Console.WriteLine("\nEnter the item you would like to add to the dictionary: ");
                                 string singleItem = Console.ReadLine();
-                                myDictionary.Add();        
+                                Console.WriteLine("\nEnter the the value for " + singleItem + ": ");
+                                int iValue = Convert.ToInt32(Console.ReadLine());
+                                myDictionary.Add(singleItem, iValue);
                                 break;
                             case 2: //add huge list
+                                myDictionary.Clear();//clear dictionary 
+                                for (int i = 1; i < 2001; i++)
+                                {
+                                    myDictionary.Add(("New Entry " + Convert.ToString(i)), i);
+                                }
+                                Console.WriteLine("\nHuge list added.");
                                 break;
                             case 3: //display
+                                if (myDictionary.Count != 0)//display contents of dictionary if it's not empty
+                                {
+                                    Console.WriteLine("\nYour dictionary:");
+                                    foreach (KeyValuePair<string, int> entry in myDictionary)
+                                    {
+                                        Console.WriteLine(entry.Key + "\t" + entry.Value);
+                                    }
+                                }
+                                else
+                                {
+                                    Console.WriteLine("\nThe dictionary is empty. Please fill to display results.");
+                                }
                                 break;
                             case 4: //delete from
+                                string sDeleteItem;
+                                Console.Write("\nEnter the item you would like to delete: ");
+                                sDeleteItem = Console.ReadLine();
+
+                                //search dictionary to see if the item exists and delete item
+                                if (myDictionary.ContainsKey(sDeleteItem))
+                                {
+                                    myDictionary.Remove(sDeleteItem);
+                                    Console.WriteLine("\n" + sDeleteItem + " successfully deleted.");
+                                }
+
+                                else
+                                {
+                                    Console.WriteLine("\nThe item you entered does not exist in the dictionary.");
+                                }
                                 break;
                             case 5: //clear
+                                myDictionary.Clear();
+                                Console.WriteLine("\nDictionary cleared.");
                                 break;
                             case 6: //search
+                                string sFindItem;
+                                System.Diagnostics.Stopwatch sw2 = new System.Diagnostics.Stopwatch(); //create stopwatch
+                                Console.Write("\nEnter the item you would like to find: ");
+                                sw2.Start();
+                                sFindItem = Console.ReadLine();
+
+                                if (myDictionary.ContainsKey(sFindItem))
+                                {
+                                    sw2.Stop();
+                                    Console.WriteLine(sFindItem + " found.");
+                                }
+
+                                else
+                                {
+                                    sw2.Stop();
+                                    Console.WriteLine(sFindItem + " was not found.");
+                                }
+
+                                TimeSpan ts = sw2.Elapsed;
+                                //set proper format for displaying the time
+                                string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+                                    ts.Hours, ts.Minutes, ts.Seconds,
+                                    ts.Milliseconds / 10);
+                                Console.WriteLine("Elapsed time: " + elapsedTime);
+                                sw2.Reset();
                                 break;
                             case 7: //return to main menu
+                                Console.WriteLine();
                                 option1 = menu(1);
                                 break;
                         }
